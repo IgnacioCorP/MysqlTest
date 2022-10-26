@@ -1,6 +1,8 @@
 
 import dominio.Persona;
-import dominio.PersonaDao;
+import datos.PersonaDao;
+import datos.UsuarioDao;
+import dominio.Usuario;
 import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,6 +23,15 @@ public class TestMysql {
 
     public static void main(String[] args) {
         PersonaDao personaDao = new PersonaDao();
+
+        System.out.println("==============    TABLA PERSONA   =====================");
+        Persona p1 = new Persona(1, "Max", "Mestriner", "max@gmail.com", "22425232");
+        Persona p2 = new Persona(2, "Carlos", "Perez", "Perez@gmail.com", "666666666");
+        //==============    TABLA PERSONA   =====================////
+        //personaDao.insert(p1);
+        personaDao.actualizar(p2);
+        personaDao.eliminar(p1);
+        //SELECCIONAR
         try {
             List<Persona> personas = personaDao.seleccionar();
             personas.forEach(persona -> {
@@ -30,7 +41,25 @@ public class TestMysql {
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         }
+        //==============    TABLA USUARIO   =====================////
+        UsuarioDao usuarioDao = new UsuarioDao();
 
+        System.out.println("==============    TABLA USUARIO   =====================");
+        Usuario U1 = new Usuario(1,"Nicolas", "cor123456");
+        Usuario U2 = new Usuario(2,"Nicolas", "cor123456");
+        
+        //usuarioDao.insert(U2);  //INSERTAR     
+        usuarioDao.actualizar(U1);
+        usuarioDao.eliminar(U2);
+        try {
+            List<Usuario> usuarios = usuarioDao.seleccionar();
+            usuarios.forEach(usuario -> {
+                System.out.println("Usuario = " + usuario);
+            }
+            );
+        } catch (SQLException ex) {
+            ex.printStackTrace(System.out);
+        }
     }
 
 }
