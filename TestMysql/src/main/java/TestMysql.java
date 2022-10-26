@@ -45,9 +45,9 @@ public class TestMysql {
         UsuarioDao usuarioDao = new UsuarioDao();
 
         System.out.println("==============    TABLA USUARIO   =====================");
-        Usuario U1 = new Usuario(1,"Nicolas", "cor123456");
-        Usuario U2 = new Usuario(2,"Nicolas", "cor123456");
-        
+        Usuario U1 = new Usuario(1, "Nicolas", "cor123456");
+        Usuario U2 = new Usuario(2, "Nicolas", "cor123456");
+
         //usuarioDao.insert(U2);  //INSERTAR     
         usuarioDao.actualizar(U1);
         usuarioDao.eliminar(U2);

@@ -20,12 +20,13 @@ import java.util.List;
  * @author Alumno Mañana
  */
 public class UsuarioDao {
-   private static final String SQL_SELECT = "SELECT * FROM usuario";
+
+    private static final String SQL_SELECT = "SELECT * FROM usuario";
     private static final String SQL_INSERT = "INSERT into usuario(Name,Password) VALUES(?,?)";
     private static final String SQL_UPDATE = "UPDATE usuario SET Name = ?, Password = ?   where Id = ?";
     private static final String SQL_DELETE = "DELETE FROM usuario where Id = ?";
-     //MÉTODO QUE NOS LISTA TODAS LAS PERSONAS DE NUESTRO SISTEMA las visualiza
-   
+    //MÉTODO QUE NOS LISTA TODAS LAS PERSONAS DE NUESTRO SISTEMA las visualiza
+
     public List<Usuario> seleccionar() throws SQLException {
         Connection conn = null;
         PreparedStatement stmt = null;
@@ -36,7 +37,7 @@ public class UsuarioDao {
         conn = getConnection();
         stmt = conn.prepareStatement(SQL_SELECT);
         rs = stmt.executeQuery();
-        
+
         while (rs.next()) {
             int Id = rs.getInt("Id");
             String Name = rs.getString("Name");
@@ -66,7 +67,7 @@ public class UsuarioDao {
             //Asignar los valores interrogantes ? de la consulta
             stmt.setString(1, usuario.getName());
             stmt.setString(2, usuario.getPassword());
-            
+
             //Ejecuto la query
             registros = stmt.executeUpdate();
         } catch (SQLException ex) {
@@ -81,9 +82,9 @@ public class UsuarioDao {
         }
         return registros;
     }
-    
+
     //MÉTODO DONDE ACTUALIZAREMOS UNA PERSONA DE NUESTRA COLECCIÓN
-    public int actualizar(Usuario usuario){
+    public int actualizar(Usuario usuario) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int registros = 0;
@@ -91,10 +92,10 @@ public class UsuarioDao {
         try {
             conn = getConnection();
             stmt = conn.prepareStatement(SQL_UPDATE);
-             stmt.setString(1, usuario.getName());
+            stmt.setString(1, usuario.getName());
             stmt.setString(2, usuario.getPassword());
             stmt.setInt(3, usuario.getId());
-            
+
             registros = stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -103,16 +104,16 @@ public class UsuarioDao {
                 close(stmt);
                 close(conn);
             } catch (SQLException ex) {
-               ex.printStackTrace(System.out);
+                ex.printStackTrace(System.out);
             }
-            
+
         }
 
         return registros;
     }
-    
+
     //MÉTODO PARA ELIMINAR UNO DE LOS USUARIOS POR ID
-    public int eliminar(Usuario usuario){
+    public int eliminar(Usuario usuario) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int registros = 0;
@@ -120,9 +121,9 @@ public class UsuarioDao {
         try {
             conn = getConnection();
             stmt = conn.prepareStatement(SQL_DELETE);
-           
+
             stmt.setInt(1, usuario.getId());
-            
+
             registros = stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -131,13 +132,12 @@ public class UsuarioDao {
                 close(stmt);
                 close(conn);
             } catch (SQLException ex) {
-               ex.printStackTrace(System.out);
+                ex.printStackTrace(System.out);
             }
-            
+
         }
 
         return registros;
     }
-    
-    
+
 }

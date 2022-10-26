@@ -11,7 +11,7 @@ import java.io.Serializable;
  *
  * @author Alumno Mañana
  */
-public class Usuario implements Serializable{
+public class Usuario implements Serializable {
 
     private int Id;
     private String Name;
@@ -85,5 +85,4 @@ public class Usuario implements Serializable{
         return "Usuario{" + "Id=" + Id + ", Name=" + Name + ", Password=" + Password + '}';
     }
 
-    
 }

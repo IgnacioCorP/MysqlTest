@@ -16,10 +16,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *Usuario 
- * identificador 
- * nombre 
- * pasword
+ * Usuario identificador nombre pasword
+ *
  * @author Alumno Mañana
  */
 public class PersonaDao {
@@ -88,7 +86,7 @@ public class PersonaDao {
         return registros;
     }
 
-    public int actualizar(Persona persona){
+    public int actualizar(Persona persona) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int registros = 0;
@@ -101,7 +99,7 @@ public class PersonaDao {
             stmt.setString(3, persona.getEmail());
             stmt.setString(4, persona.getTelefono());
             stmt.setInt(5, persona.getId());
-            
+
             registros = stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -110,14 +108,15 @@ public class PersonaDao {
                 close(stmt);
                 close(conn);
             } catch (SQLException ex) {
-               ex.printStackTrace(System.out);
+                ex.printStackTrace(System.out);
             }
-            
+
         }
 
         return registros;
     }
-    public int eliminar(Persona persona){
+
+    public int eliminar(Persona persona) {
         Connection conn = null;
         PreparedStatement stmt = null;
         int registros = 0;
@@ -125,9 +124,9 @@ public class PersonaDao {
         try {
             conn = getConnection();
             stmt = conn.prepareStatement(SQL_DELETE);
-           
+
             stmt.setInt(1, persona.getId());
-            
+
             registros = stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
@@ -136,9 +135,9 @@ public class PersonaDao {
                 close(stmt);
                 close(conn);
             } catch (SQLException ex) {
-               ex.printStackTrace(System.out);
+                ex.printStackTrace(System.out);
             }
-            
+
         }
 
         return registros;
