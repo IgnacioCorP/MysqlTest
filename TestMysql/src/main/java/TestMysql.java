@@ -20,7 +20,8 @@ import java.util.List;
  * @author Alumno Mañana
  */
 public class TestMysql {
-
+   
+    
     public static void main(String[] args) {
         PersonaDao personaDao = new PersonaDao();
 
@@ -45,22 +46,27 @@ public class TestMysql {
         UsuarioDao usuarioDao = new UsuarioDao();
 
         System.out.println("==============    TABLA USUARIO   =====================");
-        Usuario U1 = new Usuario(1, "Nicolas", "cor123456");
-        Usuario U2 = new Usuario(3, "Nicolas", "cor123456");
+        Usuario U1 = new Usuario(1, "Nacho", "cor123456");
+        Usuario U2 = new Usuario("Nicolas", "cor123456");
+        U1.setId(1);
 
-        //usuarioDao.insert(U2);  //INSERTAR     
-        usuarioDao.actualizar(U1);
-       usuarioDao.eliminar(U2);
-        try {
+      //usuarioDao.insert(U2);  //INSERTAR     
+       usuarioDao.actualizar(U1);
+       //usuarioDao.eliminar(U2);//Cambiar Id para eliminar luego 
+       try {
             List<Usuario> usuarios = usuarioDao.seleccionar();
-            usuarios.forEach(usuario -> {
-                System.out.println("Usuario = " + usuario);
+            usuarios.forEach(persona -> {
+                System.out.println("persona = " + persona);
             }
             );
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
         }
     }
+    
+    
+
+
 
 }
 
